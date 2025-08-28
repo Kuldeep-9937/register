@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Beach Registration Form</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: 'Arial', sans-serif;
+            background: #87ceeb; /* Sky blue */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        .registration-form {
+            background: url('https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=800&q=80') no-repeat center/cover;
+            padding: 150px 200px;
+            border-radius: 15px;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+            width: 100%;
+            max-width: 600px;
+            text-align: center;
+            color: white;
+            position: relative;
+        }
+
+        /* Overlay to make text readable */
+        .registration-form::before {
+            content: '';
+            position: absolute;
+            top:0;
+            left:0;
+            width:100%;
+            height:100%;
+            background: rgba(0, 0, 0, 0.4);
+            border-radius: 15px;
+            z-index: 0;
+        }
+
+        .registration-form * {
+            position: relative;
+            z-index: 1;
+        }
+
+        .registration-form h2 {
+            margin-bottom: 20px;
+            color: #fffacd;
+        }
+
+        .registration-form input[type="text"],
+        .registration-form input[type="email"],
+        .registration-form input[type="password"] {
+            width: 100%;
+            padding: 12px 15px;
+            margin: 10px 0;
+            border: none;
+            border-radius: 10px;
+            outline: none;
+            transition: all 0.3s ease;
+        }
+
+        .registration-form input:focus {
+            box-shadow: 0 0 10px #fffacd;
+        }
+
+        .registration-form button {
+            width: 100%;
+            padding: 12px;
+            background: #ff4500;
+            border: none;
+            border-radius: 10px;
+            color: white;
+            font-size: 16px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .registration-form button:hover {
+            transform: scale(1.05);
+            box-shadow: 0 5px 15px rgba(255, 69, 0, 0.6);
+        }
+
+        @media (max-width: 480px) {
+            .registration-form {
+                padding: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <form class="registration-form" id="regForm">
+        <h2>Deep Registration</h2>
+        <input type="text" id="fullName" placeholder="Full Name" required>
+        <input type="email" id="email" placeholder="Email Address" required>
+        <input type="password" id="password" placeholder="Password" required>
+        
+        <br><br><br><br>
+        <button type="submit">Register</button>
+    </form>
+
+    <script>
+        const form = document.getElementById('regForm');
+
+        form.addEventListener('submit', function(e) {
+            e.preventDefault(); // Prevent form from submitting
+
+            const fullName = document.getElementById('fullName').value.trim();
+            const email = document.getElementById('email').value.trim();
+            const password = document.getElementById('password').value;
+
+            if (fullName === '' || email === '' || password === '') {
+                alert('Please fill in all fields.');
+                return;
+            }
+
+            if (!email.includes('@') || !email.includes('.')) {
+                alert('Please enter a valid email address.');
+                return;
+            }
+
+            if (password.length < 8) {
+                alert('Password must be at least 8 characters long.');
+                return;
+            }
+
+            console.log('Full Name:', fullName);
+            console.log('Email:', email);
+            console.log('Password:', password);
+
+            alert('Registration Successful!');
+            form.reset();
+        });
+    </script>
+</body>
+</html>
